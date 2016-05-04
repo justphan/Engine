@@ -2,6 +2,7 @@
 #include "main_menu.h"
 #include "map.h"
 #include "event_manager.h"
+#include "unit.h"
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
@@ -125,6 +126,22 @@ int main(int argc, char ** argv){
 			mm.draw_main_menu(selection);
 		}
 	}
-
+	//Now you have a selction value
+	if (selection == 1) {
+		//start a new game
+		//for now, the plan is to open a hard coded map scenario
+		Unit alonzo(1, "Alonzo"); //temporary unit
+		alonzo.set_cur_health(20);
+		alonzo.set_max_health(20);
+		alonzo.set_faction(0);
+		Unit zombie(2, "Zombie");
+		zombie.set_cur_health(8);
+		zombie.set_max_health(22);
+		zombie.set_faction(1);
+	}
+	if (selection == 2) {
+		//load a save file
+		selection = (selection + 1 - 1); //pass for now
+	}
 	return 0;
 }
