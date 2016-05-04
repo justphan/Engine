@@ -24,6 +24,12 @@
     <ClCompile Include="screen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="event_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main_menu.h">
@@ -35,8 +41,13 @@
     <ClInclude Include="screen.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="event_manager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
