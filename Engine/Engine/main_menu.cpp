@@ -8,6 +8,8 @@ MainMenu::MainMenu(int width, int height, ALLEGRO_COLOR color) {
 	background = color;
 	w = width;
 	h = height;
+	title = al_load_ttf_font("sansation.ttf", 72*(h/720), 0); //may replace to ALLEGRO_BITMAP if we get a logo need boxes for: New Game, Load Game, Exit (for now)
+	options = al_load_ttf_font("sansation.ttf", 28*(h/720), 0);
 }
 MainMenu::~MainMenu() {
 	delete new_game;
@@ -85,4 +87,26 @@ void MainMenu::draw_main_menu(int select) {
 	//-----------------------------End Title--------------------------------
 
 	al_flip_display();
+}
+
+int MainMenu::x_bound_left() {
+	int temp_x = w / 2;
+	temp_x -= ((new_game->x_end) / 2);
+	return temp_x;
+}
+int MainMenu::x_bound_right() {
+	return (x_bound_left() + (new_game->x_end));
+}
+
+int MainMenu::y_bound_top_new_game() {
+	return (h / 1.8);
+}
+int MainMenu::y_bound_offset() {
+	return (new_game->y_end);
+}
+int MainMenu::y_bound_top_load_game() {
+	return (y_bound_top_new_game() + (h / 8));
+}
+int MainMenu::y_bound_top_exit_game() {
+	return (y_bound_top_load_game() + (h / 8));
 }

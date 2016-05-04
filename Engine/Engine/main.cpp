@@ -15,6 +15,7 @@
 const float FPS = 60;
 int width = 1280;
 int height = 720; //currently hard coded!!!
+bool fullscreen = false;
 
 void initialize_allegro(){
 	al_init();
@@ -32,7 +33,7 @@ void initialize_allegro(){
 int main(int argc, char ** argv){
 	initialize_allegro();
 
-	Screen disp(width, height, false); //start at 1280 by 720, implement config file later?
+	Screen disp(width, height, fullscreen); //start at 1280 by 720, implement config file later?
 	MainMenu mm(width, height, al_map_rgb(0, 0, 0));
 	
 	ALLEGRO_TIMER * timer = al_create_timer(1 / FPS);
@@ -80,6 +81,44 @@ int main(int argc, char ** argv){
 				break;
 			}
 		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+			int mouse_x = ev.mouse.x;
+			int mouse_y = ev.mouse.y;
+			if (mouse_x >= mm.x_bound_left() && mouse_x <= mm.x_bound_right()) {
+				if (mouse_y >= mm.y_bound_top_new_game() && mouse_y <= (mm.y_bound_offset() + mm.y_bound_top_new_game())) { //in new game box
+					selection = 1;
+					changed = true;
+				}
+				if (mouse_y >= mm.y_bound_top_load_game() && mouse_y <= (mm.y_bound_offset() + mm.y_bound_top_load_game())) { //in new game box
+					selection = 2;
+					changed = true;
+				}
+				if (mouse_y >= mm.y_bound_top_exit_game() && mouse_y <= (mm.y_bound_offset() + mm.y_bound_top_exit_game())) { //in new game box
+					selection = 3;
+					changed = true;
+				}
+			}
+		}
+
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
+			int mouse_x = ev.mouse.x;
+			int mouse_y = ev.mouse.y;
+			if (mouse_x >= mm.x_bound_left() && mouse_x <= mm.x_bound_right()) {
+				if (mouse_y >= mm.y_bound_top_new_game() && mouse_y <= (mm.y_bound_offset() + mm.y_bound_top_new_game())) { //in new game box
+					selected = true;
+					break;
+				}
+				if (mouse_y >= mm.y_bound_top_load_game() && mouse_y <= (mm.y_bound_offset() + mm.y_bound_top_load_game())) { //in new game box
+					selected = true;
+					break;
+				}
+				if (mouse_y >= mm.y_bound_top_exit_game() && mouse_y <= (mm.y_bound_offset() + mm.y_bound_top_exit_game())) { //in new game box
+					selected = true;
+					break;
+				}
+			}
+		}
+
 		
 		if (redraw && al_is_event_queue_empty(em.event_queue)) {
 			redraw = false;

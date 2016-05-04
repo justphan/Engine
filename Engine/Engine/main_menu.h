@@ -8,14 +8,6 @@
 
 class MainMenu{
 private:
-	ALLEGRO_FONT * title = al_load_ttf_font("sansation.ttf", 72, 0); //may replace to ALLEGRO_BITMAP if we get a logo
-	//need boxes for: New Game, Load Game, Exit (for now)
-
-	ALLEGRO_FONT * options = al_load_ttf_font("sansation.ttf", 28, 0);
-
-	int w; //resolution
-	int h;
-
 	class Box_Data { //for storing data needed to draw each of the boxes, depends on current resolution
 	public:
 		float x_start = 0;
@@ -40,7 +32,11 @@ private:
 		float offset_y(float offset) { return (y_end + offset); }
 		bool round() { return rounded; }
 	};
-
+	int w;
+	int h; //resolution
+	ALLEGRO_FONT * title = NULL; //may replace to ALLEGRO_BITMAP if we get a logo 
+	ALLEGRO_FONT * options = NULL;
+	//need boxes for: New Game, Load Game, Exit (for now)
 	Box_Data * new_game = NULL;
 	Box_Data * load_game = NULL;
 	Box_Data * exit_game = NULL;
@@ -50,6 +46,12 @@ public:
 	MainMenu(int width, int height, ALLEGRO_COLOR color);
 	~MainMenu();
 	void draw_main_menu(int select); //decides which box is selected; 0 = no box, 1 = new game, 2 = load game, 3 = exit
+	int x_bound_left(); //returns left bound of option boxes
+	int x_bound_right();
+	int y_bound_top_new_game();
+	int y_bound_offset();
+	int y_bound_top_load_game();
+	int y_bound_top_exit_game();
 };
 
 #endif
