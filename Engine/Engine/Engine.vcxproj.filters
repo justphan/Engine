@@ -44,6 +44,9 @@
     <ClInclude Include="event_manager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="error.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="event_manager.h" />
+    <ClInclude Include="error.h" />
     <ClInclude Include="main_menu.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="screen.h" />
