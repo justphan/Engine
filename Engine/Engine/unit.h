@@ -3,6 +3,7 @@
 
 class Unit {
 private:
+	bool init = false; //whether or not unit has been initialized
 	//Unit Identification
 	int unit_id;
 	char * unit_name;
@@ -32,11 +33,24 @@ public:
 	void set_cur_health(int hp) { cur_hp = hp; }
 	void set_max_health(int hp) { max_hp = hp; }
 	void set_faction(int fac) { faction = fac; }
+	int init_unit(int id, char * name) {
+		if (init == false) {
+			unit_id = id;
+			unit_name = name;
+			init = true;
+			return 1;
+		}
+		else
+			return 0;
+	}
 	//end sets
 
 	Unit(int id, char * name) {
 		unit_id = id;
 		unit_name = name;
+		init = true;
+	}
+	Unit() {
 	}
 };
 

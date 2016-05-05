@@ -29,6 +29,7 @@
     <ClInclude Include="event_manager.h" />
     <ClInclude Include="main_menu.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="map_gui.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>

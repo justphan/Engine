@@ -1,5 +1,6 @@
 #include "map.h"
 
+
 Map::Map(char * map_name) {
 	int tally_x = 0;
 	int tally_y = 0;
@@ -33,4 +34,9 @@ Map::Map(char * map_name) {
 
 	map_width = tally_x;
 	map_height = tally_y;
+}
+
+void Map::add_unit(Unit u, int x, int y) {
+	UnitCoords g(x, y, u);
+	units.push_back(g);
 }

@@ -47,6 +47,9 @@
     <ClInclude Include="unit.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="map_gui.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
