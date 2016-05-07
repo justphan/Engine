@@ -20,52 +20,52 @@ bool fullscreen = false;
 
 int initialize_allegro(){
 	if (!al_init()) {
-		Error::message("Error", "Error", "Failure to initialize Allegro.");
+		Error::message("Error", "Initialize", "Failure to initialize Allegro.");
 		return -1;
 	}
 
 	if (!al_init_font_addon()) {
-		Error::message("Error", "Error", "Failure to initialize font addons.");
+		Error::message("Error", "Initialize", "Failure to initialize font addons.");
 		return -1;
 	}
 
 	if (!al_init_image_addon()) {
-		Error::message("Error", "Error", "Failure to initialize image addons.");
+		Error::message("Error", "Initialize", "Failure to initialize image addons.");
 		return -1;
 	}
 
 	if (!al_init_native_dialog_addon()) {
-		Error::message("Error", "Error", "Failure to initialize dialog addons.");
+		Error::message("Error", "Initialize", "Failure to initialize dialog addons.");
 		return -1;
 	}
 
 	if (!al_install_audio()) {
-		Error::message("Error", "Error", "Failure to install audio.");
+		Error::message("Error", "Initialize", "Failure to install audio.");
 		return -1;
 	}
 
 	if (!al_init_acodec_addon()) {
-		Error::message("Error", "Error", "Failure to initialize acodec addons.");
+		Error::message("Error", "Initialize", "Failure to initialize acodec addons.");
 		return -1;
 	}
 
 	if (!al_init_ttf_addon()) {
-		Error::message("Error", "Error", "Failure to initialize ttf addons.");
+		Error::message("Error", "Initialize", "Failure to initialize ttf addons.");
 		return -1;
 	}
 
 	if (!al_init_primitives_addon()) {
-		Error::message("Error", "Error", "Failure to initialize primitives addons.");
+		Error::message("Error", "Initialize", "Failure to initialize primitives addons.");
 		return -1;
 	}
 
 	if (!al_install_keyboard()) {
-		Error::message("Error", "Error", "Failure to install keyboard.");
+		Error::message("Error", "Initialize", "Failure to install keyboard.");
 		return -1;
 	}
 
 	if (!al_install_mouse()) {
-		Error::message("Error", "Error", "Failure to install mouse.");
+		Error::message("Error", "Initialize", "Failure to install mouse.");
 		return -1;
 	}
 	return 0;
@@ -79,6 +79,10 @@ int main(int argc, char ** argv){
 	MainMenu mm(width, height, al_map_rgb(0, 0, 0));
 	
 	ALLEGRO_TIMER * timer = al_create_timer(1 / FPS);
+	if (timer == NULL) {
+		Error::message("Error", "Timer", "Failure to create timer");
+		return -1;
+	}
 	EventManager em(timer, disp.get_display());
 	mm.draw_main_menu(1);
 
